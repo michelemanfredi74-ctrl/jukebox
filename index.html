@@ -59,7 +59,6 @@
       border: 2px solid #00ffcc;
       border-radius: 8px;
       overflow: hidden;
-      margin-bottom: 15px;
       aspect-ratio: 16 / 9;
       display: flex;
       align-items: center;
@@ -70,30 +69,6 @@
       height: 100%;
       border: none;
     }
-    .song-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      max-height: 180px;
-      overflow-y: auto;
-    }
-    .song-btn {
-      background: linear-gradient(145deg, #2b2b2b, #1a1a1a);
-      color: #ffd700;
-      border: 1px solid #ffd700;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 12px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .song-btn:hover {
-      background: #ffd700;
-      color: #000;
-    }
   </style>
 </head>
 <body>
@@ -101,7 +76,7 @@
   <div class="jukebox-body">
     <div class="brand-title">JUKEBOX YT</div>
 
-    <!-- Barra per incollare il link di YouTube -->
+    <!-- Barra per incollare il link -->
     <div class="search-box">
       <input type="text" id="linkInput" placeholder="Incolla link di YouTube qui...">
       <button onclick="playFromLink()">▶ Suona</button>
@@ -110,29 +85,6 @@
     <!-- Schermo del Jukebox -->
     <div class="screen">
       <iframe id="yt-player" src="https://www.youtube-nocookie.com/embed/8C_D1x3aL8E?autoplay=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-
-    <!-- Playlist con tasti rapidi -->
-    <div class="song-list">
-      <button class="song-btn" onclick="playYouTube('8C_D1x3aL8E')">
-        <span>01. 883 - Nord Sud Ovest Est</span>
-        <span>▶</span>
-      </button>
-
-      <button class="song-btn" onclick="playYouTube('dQw4w9WgXcQ')">
-        <span>02. Rick Astley - Never Gonna Give You Up</span>
-        <span>▶</span>
-      </button>
-      
-      <button class="song-btn" onclick="playYouTube('L_jWHffIx5E')">
-        <span>03. Smash Mouth - All Star</span>
-        <span>▶</span>
-      </button>
-
-      <button class="song-btn" onclick="playYouTube('fJ9rUzIMcZQ')">
-        <span>04. Queen - Bohemian Rhapsody</span>
-        <span>▶</span>
-      </button>
     </div>
   </div>
 
@@ -146,13 +98,12 @@
       const input = document.getElementById('linkInput').value.trim();
       let videoId = "";
 
-      // Estrae l'ID sia da link tipo youtu.be che da youtube.com/watch?v=...
       if (input.includes("youtu.be/")) {
         videoId = input.split("youtu.be/")[1].split("?")[0];
       } else if (input.includes("v=")) {
         videoId = input.split("v=")[1].split("&")[0];
       } else {
-        videoId = input; // se viene incollato direttamente l'ID
+        videoId = input;
       }
 
       if (videoId !== "") {

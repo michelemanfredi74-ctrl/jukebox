@@ -101,7 +101,7 @@
   <div class="jukebox-body">
     <div class="brand-title">JUKEBOX YT</div>
 
-    <!-- Barra di ricerca per qualsiasi canzone del mondo -->
+    <!-- Barra di ricerca -->
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="Cerca qualsiasi canzone o artista...">
       <button onclick="searchSong()">🔍 Cerca</button>
@@ -109,23 +109,28 @@
 
     <!-- Schermo del Jukebox -->
     <div class="screen">
-      <iframe id="yt-player" src="https://www.youtube.com/embed/" allow="autoplay" allowfullscreen></iframe>
+      <iframe id="yt-player" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-    <!-- Selezione rapida brani preferiti -->
+    <!-- Selezione rapida -->
     <div class="song-list">
+      <button class="song-btn" onclick="playYouTube('8C_D1x3aL8E')">
+        <span>01. 883 - Nord Sud Ovest Est</span>
+        <span>▶</span>
+      </button>
+
       <button class="song-btn" onclick="playYouTube('dQw4w9WgXcQ')">
-        <span>01. Never Gonna Give You Up</span>
+        <span>02. Never Gonna Give You Up</span>
         <span>▶</span>
       </button>
       
       <button class="song-btn" onclick="playYouTube('L_jWHffIx5E')">
-        <span>02. Smash Mouth - All Star</span>
+        <span>03. Smash Mouth - All Star</span>
         <span>▶</span>
       </button>
 
       <button class="song-btn" onclick="playYouTube('fJ9rUzIMcZQ')">
-        <span>03. Queen - Bohemian Rhapsody</span>
+        <span>04. Queen - Bohemian Rhapsody</span>
         <span>▶</span>
       </button>
     </div>
@@ -140,9 +145,8 @@
     function searchSong() {
       const query = document.getElementById('searchInput').value;
       if (query.trim() !== "") {
-        // Apre la ricerca direttamente dentro lo schermo del jukebox
-        const player = document.getElementById('yt-player');
-        player.src = "https://www.youtube.com/embed?listType=search&list=" + encodeURIComponent(query);
+        // Apre direttamente la ricerca su YouTube in una nuova scheda
+        window.open("https://www.youtube.com/results?search_query=" + encodeURIComponent(query), "_blank");
       }
     }
   </script>

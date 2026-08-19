@@ -41,16 +41,25 @@
       margin-bottom: 15px;
     }
 
-    .info-box {
+    .screen {
       background: #000;
       border: 2px solid #00ffcc;
       border-radius: 12px;
-      padding: 20px;
-      color: #00ffcc;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 15px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
       box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.3);
+      margin-bottom: 15px;
+    }
+
+    .screen iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     .section-title {
@@ -67,7 +76,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
-      max-height: 320px;
+      max-height: 280px;
       overflow-y: auto;
       padding-right: 5px;
     }
@@ -85,10 +94,10 @@
       color: #fff;
       border: 2px solid #ffd700;
       border-radius: 8px;
-      padding: 12px 8px;
+      padding: 10px 8px;
       font-size: 12px;
       font-weight: bold;
-      text-decoration: none;
+      cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
@@ -119,49 +128,54 @@
   <div class="jukebox-body">
     <div class="brand-title">📻 JUKEBOX 80-90 📼</div>
 
-    <div class="info-box">
-      🎵 Scegli un brano qui sotto per ascoltarlo su YouTube!
+    <div class="screen">
+      <iframe id="yt-player" src="https://www.youtube.com/embed/fJ9rUzIMcZQ?autoplay=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <div class="section-title">SELEZIONA UNA CANZONE</div>
+    <div class="section-title">🎵 SELEZIONA UNA CANZONE</div>
 
     <div class="song-grid">
       <!-- 883 -->
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+hanno+ucciso+l+uomo+ragno" target="_blank">▶ Hanno Ucciso L'Uomo Ragno</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+nord+sud+ovest+est" target="_blank">▶ Nord Sud Ovest Est</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+come+mai" target="_blank">▶ Come Mai</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+gli+anni" target="_blank">▶ Gli Anni</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+sei+un+mito" target="_blank">▶ Sei Un Mito</a>
+      <button class="song-btn" onclick="playYouTube('n3I_y5a5s4s')">▶ Hanno Ucciso L'Uomo Ragno</button>
+      <button class="song-btn" onclick="playYouTube('e_H9Xv9yO40')">▶ Nord Sud Ovest Est</button>
+      <button class="song-btn" onclick="playYouTube('W_x3N94oIbg')">▶ Come Mai</button>
+      <button class="song-btn" onclick="playYouTube('X1b_5409Wv8')">▶ Gli Anni</button>
+      <button class="song-btn" onclick="playYouTube('92eR43u3f9k')">▶ Sei Un Mito</button>
 
       <!-- VASCO ROSSI -->
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=vasco+rossi+albachiara" target="_blank">▶ Albachiara</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=vasco+rossi+vita+spericolata" target="_blank">▶ Vita Spericolata</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=vasco+rossi+rewind" target="_blank">▶ Rewind</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=vasco+rossi+sally" target="_blank">▶ Sally</a>
-
-      <!-- LIGABUE -->
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=ligabue+certe+notti" target="_blank">▶ Certe Notti</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=ligabue+urlando+contro+il+cielo" target="_blank">▶ Urlando Contro il Cielo</a>
+      <button class="song-btn" onclick="playYouTube('G_vY_U9zS4g')">▶ Albachiara</button>
+      <button class="song-btn" onclick="playYouTube('v2S1zW9x1W0')">▶ Vita Spericolata</button>
+      <button class="song-btn" onclick="playYouTube('N8aA71_yWso')">▶ Rewind</button>
+      <button class="song-btn" onclick="playYouTube('98_k0f8yW_0')">▶ Sally</button>
 
       <!-- QUEEN -->
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=queen+bohemian+rhapsody" target="_blank">▶ Bohemian Rhapsody</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=queen+don+t+stop+me+now" target="_blank">▶ Don't Stop Me Now</a>
+      <button class="song-btn" onclick="playYouTube('fJ9rUzIMcZQ')">▶ Bohemian Rhapsody</button>
+      <button class="song-btn" onclick="playYouTube('HgzGwKwLmgM')">▶ Don't Stop Me Now</button>
+
+      <!-- LIGABUE -->
+      <button class="song-btn" onclick="playYouTube('w312S28xW1g')">▶ Certe Notti</button>
+      <button class="song-btn" onclick="playYouTube('S719zW21Xbg')">▶ Urlando Contro il Cielo</button>
 
       <!-- EROS RAMAZZOTTI -->
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=eros+ramazzotti+piu+bella+cosa" target="_blank">▶ Più Bella Cosa</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=eros+ramazzotti+se+bastasse+una+canzone" target="_blank">▶ Se Bastasse Una Canzone</a>
+      <button class="song-btn" onclick="playYouTube('a91_3wS91z0')">▶ Più Bella Cosa</button>
+      <button class="song-btn" onclick="playYouTube('219_s9W1y_0')">▶ Se Bastasse Una Canzone</button>
 
-      <!-- MASSIMO RANIERI -->
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=massimo+ranieri+perdere+l+amore" target="_blank">▶ Perdere L'Amore</a>
+      <!-- MASSIMO RANIERI & GINO PAOLI -->
+      <button class="song-btn" onclick="playYouTube('r19w_s12W_0')">▶ Perdere L'Amore</button>
+      <button class="song-btn" onclick="playYouTube('R76Abv8-Mbc')">▶ Sapore Di Sale</button>
 
-      <!-- GINO PAOLI -->
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=gino+paoli+sapore+di+sale" target="_blank">▶ Sapore Di Sale</a>
-
-      <!-- DANCE -->
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=a-ha+take+on+me" target="_blank">▶ Take On Me</a>
-      <a class="song-btn" href="https://www.youtube.com/results?search_query=eiffel+65+blue" target="_blank">▶ Blue (Eiffel 65)</a>
+      <!-- CLASSICI DANCE -->
+      <button class="song-btn" onclick="playYouTube('djV11Xbc914')">▶ Take On Me</button>
+      <button class="song-btn" onclick="playYouTube('68ugkg9Re48')">▶ Blue (Eiffel 65)</button>
     </div>
   </div>
+
+  <script>
+    function playYouTube(videoId) {
+      const player = document.getElementById('yt-player');
+      player.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    }
+  </script>
 
 </body>
 </html>

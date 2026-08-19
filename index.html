@@ -134,7 +134,7 @@
 
     <!-- Schermo del Jukebox -->
     <div class="screen">
-      <iframe id="yt-player" src="https://www.youtube.com/embed/sURek0ZaupE?autoplay=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe id="yt-player" src="https://www.youtube.com/embed/sURek0ZaupE?enablejsapi=1" allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
     <div class="section-title">🎵 SELEZIONA UNA CANZONE</div>
@@ -177,7 +177,7 @@
   <script>
     function playYouTube(videoId) {
       const player = document.getElementById('yt-player');
-      player.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+      player.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=0";
     }
   </script>
 

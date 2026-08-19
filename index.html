@@ -101,18 +101,18 @@
   <div class="jukebox-body">
     <div class="brand-title">JUKEBOX YT</div>
 
-    <!-- Barra di ricerca -->
+    <!-- Barra di ricerca interna -->
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Cerca qualsiasi canzone o artista...">
+      <input type="text" id="searchInput" placeholder="Scrivi il titolo e premi cerca...">
       <button onclick="searchSong()">🔍 Cerca</button>
     </div>
 
-    <!-- Schermo del Jukebox -->
+    <!-- Schermo unico del Jukebox -->
     <div class="screen">
-      <iframe id="yt-player" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe id="yt-player" src="https://www.youtube-nocookie.com/embed/8C_D1x3aL8E?autoplay=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-    <!-- Selezione rapida -->
+    <!-- Tasti rapidi per le canzoni -->
     <div class="song-list">
       <button class="song-btn" onclick="playYouTube('8C_D1x3aL8E')">
         <span>01. 883 - Nord Sud Ovest Est</span>
@@ -120,7 +120,7 @@
       </button>
 
       <button class="song-btn" onclick="playYouTube('dQw4w9WgXcQ')">
-        <span>02. Never Gonna Give You Up</span>
+        <span>02. Rick Astley - Never Gonna Give You Up</span>
         <span>▶</span>
       </button>
       
@@ -139,14 +139,15 @@
   <script>
     function playYouTube(videoId) {
       const player = document.getElementById('yt-player');
-      player.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+      player.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?autoplay=1";
     }
 
     function searchSong() {
       const query = document.getElementById('searchInput').value;
       if (query.trim() !== "") {
-        // Apre direttamente la ricerca su YouTube in una nuova scheda
-        window.open("https://www.youtube.com/results?search_query=" + encodeURIComponent(query), "_blank");
+        const player = document.getElementById('yt-player');
+        // Usa il riproduttore incorporato con parametro di ricerca interno per restare dentro lo schermo
+        player.src = "https://www.youtube-nocookie.com/embed?listType=search&list=" + encodeURIComponent(query) + "&autoplay=1";
       }
     }
   </script>

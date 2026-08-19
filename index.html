@@ -44,10 +44,10 @@
       border: 2px solid #ffd700;
       background: #1a1a1a;
       color: #fff;
-      font-size: 13px;
+      font-size: 12px;
     }
     .search-box button {
-      padding: 10px 15px;
+      padding: 10px 12px;
       background: #ffd700;
       border: none;
       border-radius: 6px;
@@ -101,18 +101,18 @@
   <div class="jukebox-body">
     <div class="brand-title">JUKEBOX YT</div>
 
-    <!-- Barra di ricerca interna -->
+    <!-- Barra per incollare il link di YouTube -->
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Scrivi il titolo e premi cerca...">
-      <button onclick="searchSong()">🔍 Cerca</button>
+      <input type="text" id="linkInput" placeholder="Incolla link di YouTube qui...">
+      <button onclick="playFromLink()">▶ Suona</button>
     </div>
 
-    <!-- Schermo unico del Jukebox -->
+    <!-- Schermo del Jukebox -->
     <div class="screen">
       <iframe id="yt-player" src="https://www.youtube-nocookie.com/embed/8C_D1x3aL8E?autoplay=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-    <!-- Tasti rapidi per le canzoni -->
+    <!-- Playlist con tasti rapidi -->
     <div class="song-list">
       <button class="song-btn" onclick="playYouTube('8C_D1x3aL8E')">
         <span>01. 883 - Nord Sud Ovest Est</span>
@@ -142,12 +142,21 @@
       player.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?autoplay=1";
     }
 
-    function searchSong() {
-      const query = document.getElementById('searchInput').value;
-      if (query.trim() !== "") {
-        const player = document.getElementById('yt-player');
-        // Usa il riproduttore incorporato con parametro di ricerca interno per restare dentro lo schermo
-        player.src = "https://www.youtube-nocookie.com/embed?listType=search&list=" + encodeURIComponent(query) + "&autoplay=1";
+    function playFromLink() {
+      const input = document.getElementById('linkInput').value.trim();
+      let videoId = "";
+
+      // Estrae l'ID sia da link tipo youtu.be che da youtube.com/watch?v=...
+      if (input.includes("youtu.be/")) {
+        videoId = input.split("youtu.be/")[1].split("?")[0];
+      } else if (input.includes("v=")) {
+        videoId = input.split("v=")[1].split("&")[0];
+      } else {
+        videoId = input; // se viene incollato direttamente l'ID
+      }
+
+      if (videoId !== "") {
+        playYouTube(videoId);
       }
     }
   </script>

@@ -41,32 +41,74 @@
       margin-bottom: 15px;
     }
 
+    /* Schermo del Jukebox senza video */
     .screen {
       background: #000;
       border: 2px solid #00ffcc;
       border-radius: 12px;
-      padding: 15px;
+      padding: 20px 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 120px;
-      box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.3);
+      min-height: 140px;
+      box-shadow: inset 0 0 15px rgba(0, 255, 204, 0.2);
       margin-bottom: 15px;
+      position: relative;
     }
 
     .now-playing {
       color: #00ffcc;
       font-size: 14px;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       text-transform: uppercase;
+      word-break: break-word;
+      text-shadow: 0 0 5px #00ffcc;
     }
 
-    audio {
-      width: 100%;
-      max-width: 350px;
+    /* Animazione Lineetta / Onda Musicale */
+    .sound-wave {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 5px;
       height: 40px;
+      margin-top: 5px;
+    }
+
+    .bar {
+      width: 6px;
+      height: 8px;
+      background: #00ffcc;
+      border-radius: 3px;
+      box-shadow: 0 0 8px #00ffcc;
+    }
+
+    /* Quando la musica parte, le barrette si animano */
+    .playing .bar {
+      animation: wave 1.2s infinite ease-in-out alternate;
+    }
+
+    .playing .bar:nth-child(1) { animation-delay: 0.1s; }
+    .playing .bar:nth-child(2) { animation-delay: 0.3s; }
+    .playing .bar:nth-child(3) { animation-delay: 0.5s; }
+    .playing .bar:nth-child(4) { animation-delay: 0.2s; }
+    .playing .bar:nth-child(5) { animation-delay: 0.4s; }
+    .playing .bar:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes wave {
+      0% { height: 8px; }
+      100% { height: 38px; background: #ffd700; box-shadow: 0 0 8px #ffd700; }
+    }
+
+    /* Iframe YouTube Nascosto (riproduce solo l'audio) */
+    .hidden-player {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .section-title {
@@ -127,31 +169,60 @@
   <div class="jukebox-body">
     <div class="brand-title">📻 JUKEBOX 80-90 📼</div>
 
+    <!-- Schermo Grafico con la Lineetta Musicale -->
     <div class="screen">
       <div class="now-playing" id="track-title">Seleziona un brano</div>
-      <audio id="audio-player" controls></audio>
+      
+      <div class="sound-wave" id="wave-container">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+
+      <!-- Player audio nascosto alla vista -->
+      <iframe class="hidden-player" id="yt-player" allow="autoplay"></iframe>
     </div>
 
-    <div class="section-title">🎵 SELEZIONA UNA CANZONE</div>
+    <div class="section-title">🎵 TUTTE LE 16 CANZONI</div>
 
+    <!-- Griglia con tutte le 16 canzoni -->
     <div class="song-grid">
-      <!-- Sostituisci i link .mp3 con i tuoi file audio preferiti -->
-      <button class="song-btn" onclick="playAudio('Queen - We Are The Champions', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3')">▶ We Are The Champions (Queen)</button>
-      <button class="song-btn" onclick="playAudio('883 - Hanno Ucciso L\'Uomo Ragno', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3')">▶ Hanno Ucciso L'Uomo Ragno (883)</button>
-      <button class="song-btn" onclick="playAudio('883 - Nord Sud Ovest Est', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3')">▶ Nord Sud Ovest Est (883)</button>
-      <button class="song-btn" onclick="playAudio('883 - Come Mai', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3')">▶ Come Mai (883)</button>
-      <button class="song-btn" onclick="playAudio('Vasco Rossi - Albachiara', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3')">▶ Albachiara (Vasco Rossi)</button>
+      <button class="song-btn" onclick="playAudio('Queen - We Are The Champions', 'fJ9rUzIMcZQ')">▶ Queen - We Are The Champions</button>
+      <button class="song-btn" onclick="playAudio('883 - Hanno Ucciso L\'Uomo Ragno', 'N3P6fK2L8w8')">▶ 883 - Hanno Ucciso L'Uomo Ragno</button>
+      <button class="song-btn" onclick="playAudio('883 - Nord Sud Ovest Est', '8C_D1x3aL8E')">▶ 883 - Nord Sud Ovest Est</button>
+      <button class="song-btn" onclick="playAudio('883 - Come Mai', 'S3JmXnI7fEE')">▶ 883 - Come Mai</button>
+      <button class="song-btn" onclick="playAudio('883 - Gli Anni', '8j8XpL2mR5o')">▶ 883 - Gli Anni</button>
+      <button class="song-btn" onclick="playAudio('883 - Sei Un Mito', '38s1I2m214c')">▶ 883 - Sei Un Mito</button>
+      <button class="song-btn" onclick="playAudio('Vasco Rossi - Albachiara', 'u38Y_E3k34w')">▶ Vasco Rossi - Albachiara</button>
+      <button class="song-btn" onclick="playAudio('Vasco Rossi - Vita Spericolata', '1_7_s_w7h0A')">▶ Vasco Rossi - Vita Spericolata</button>
+      <button class="song-btn" onclick="playAudio('Vasco Rossi - Rewind', '2m5lS25Xy34')">▶ Vasco Rossi - Rewind</button>
+      <button class="song-btn" onclick="playAudio('Vasco Rossi - Sally', 'p3k5qW_8W2E')">▶ Vasco Rossi - Sally</button>
+      <button class="song-btn" onclick="playAudio('Ligabue - Urlando Contro il Cielo', 'P3a5eO2F-K4')">▶ Ligabue - Urlando Contro il Cielo</button>
+      <button class="song-btn" onclick="playAudio('Eros Ramazzotti - Più Bella Cosa', 'b2AqO6E5SGE')">▶ Eros Ramazzotti - Più Bella Cosa</button>
+      <button class="song-btn" onclick="playAudio('Eros Ramazzotti - Se Bastasse Una Canzone', 'qQ3q_DqX7zA')">▶ Eros Ramazzotti - Se Bastasse Una Canzone</button>
+      <button class="song-btn" onclick="playAudio('Renato Zero - Il Cielo', 'fJ9rUzIMcZQ')">▶ Renato Zero - Il Cielo</button>
+      <button class="song-btn" onclick="playAudio('Renato Zero - I Migliori Anni', 'zcASGUV8L4g')">▶ Renato Zero - I Migliori Anni</button>
+      <button class="song-btn" onclick="playAudio('Eiffel 65 - Blue', '68ugkg9Re48')">▶ Eiffel 65 - Blue</button>
     </div>
   </div>
 
   <script>
-    function playAudio(title, url) {
-      const player = document.getElementById('audio-player');
+    function playAudio(title, videoId) {
+      const player = document.getElementById('yt-player');
       const trackTitle = document.getElementById('track-title');
+      const waveContainer = document.getElementById('wave-container');
       
+      // Aggiorna il titolo dello schermo
       trackTitle.innerText = "In riproduzione: " + title;
-      player.src = url;
-      player.play();
+      
+      // Attiva l'animazione della lineetta/onda sonora
+      waveContainer.classList.add('playing');
+      
+      // Avvia l'audio tramite il flusso
+      player.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?autoplay=1&enablejsapi=1";
     }
   </script>
 

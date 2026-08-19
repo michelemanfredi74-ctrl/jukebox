@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jukebox 80-90 YT</title>
+  <title>Jukebox 883 & Lùnapop</title>
   <style>
     * { 
       box-sizing: border-box; 
@@ -68,7 +68,8 @@
       color: #ffd700;
       font-size: 13px;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-top: 10px;
+      margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
@@ -78,7 +79,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
-      max-height: 240px;
+      max-height: 260px;
       overflow-y: auto;
       padding-right: 5px;
     }
@@ -129,35 +130,43 @@
 <body>
 
   <div class="jukebox-body">
-    <div class="brand-title">📼 JUKEBOX 80-90 📻</div>
+    <div class="brand-title">📻 JUKEBOX 80-90 📼</div>
 
     <!-- Schermo del Jukebox -->
     <div class="screen">
-      <iframe id="yt-player" src="https://www.youtube-nocookie.com/embed/8C_D1x3aL8E?autoplay=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe id="yt-player" src="https://www.youtube.com/embed/AZbd2q5M8g0?autoplay=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-    <div class="section-title">SELEZIONA UNA CANZONE</div>
+    <div class="section-title">🎵 SELEZIONA UNA CANZONE</div>
 
-    <!-- Pulsanti Canzoni Anni 80 e 90 -->
+    <!-- Lista Pulsanti -->
     <div class="song-grid">
-      <!-- ANNI '80 -->
-      <button class="song-btn" onclick="playYouTube('djV11Xbc914')">▶ Take On Me (A-ha)</button>
-      <button class="song-btn" onclick="playYouTube('eH3giaIzONA')">▶ Hanno Ucciso L'Uomo Ragno (883)</button>
-      <button class="song-btn" onclick="playYouTube('L397TWLwrUU')">▶ Eye of the Tiger (Survivor)</button>
-      <button class="song-btn" onclick="playYouTube('9jK-NcRmVcw')">▶ The Final Countdown (Europe)</button>
+      <!-- 883 -->
+      <button class="song-btn" onclick="playYouTube('AZbd2q5M8g0')">▶ Hanno Ucciso L'Uomo Ragno (883)</button>
+      <button class="song-btn" onclick="playYouTube('E36tC07mYj4')">▶ Hanno Ucciso L'Uomo Ragno (Originale)</button>
+      <button class="song-btn" onclick="playYouTube('7L8_sI7M-0A')">▶ Nord Sud Ovest Est (883)</button>
+      <button class="song-btn" onclick="playYouTube('38s1I2m214c')">▶ Sei Un Mito (883)</button>
+      <button class="song-btn" onclick="playYouTube('S3JmXnI7fEE')">▶ Come Mai (883)</button>
+      <button class="song-btn" onclick="playYouTube('Q8L_30R_Rxs')">▶ La Regola dell'Amico (883)</button>
+      <button class="song-btn" onclick="playYouTube('8j8XpL2mR5o')">▶ Gli Anni (883)</button>
       
-      <!-- ANNI '90 -->
-      <button class="song-btn" onclick="playYouTube('p3l7fgvrEKM')">▶ Blue - Da Ba Dee (Eiffel 65)</button>
-      <button class="song-btn" onclick="playYouTube('1k8craCGwV4')">▶ L'Amour Toujours (Gigi D'Agostino)</button>
-      <button class="song-btn" onclick="playYouTube('fJ9rUzIMcZQ')">▶ Bohemian Rhapsody (Queen)</button>
-      <button class="song-btn" onclick="playYouTube('hTWKbfoikeg')">▶ Smells Like Teen Spirit (Nirvana)</button>
+      <!-- LÙNAPOP -->
+      <button class="song-btn" onclick="playYouTube('eW1O4jO1Wc8')">▶ 50 Special (Lùnapop)</button>
+      <button class="song-btn" onclick="playYouTube('987l2Wq34S0')">▶ Un Giorno Migliore (Lùnapop)</button>
+      <button class="song-btn" onclick="playYouTube('1_7K8aP865M')">▶ Qualcosa di Grande (Lùnapop)</button>
+      <button class="song-btn" onclick="playYouTube('4a3K9sW2a0Y')">▶ Vespa Special (Lùnapop)</button>
+
+      <!-- ALTRI CLASSICI 80-90 -->
+      <button class="song-btn" onclick="playYouTube('djV11Xbc914')">▶ Take On Me (A-ha)</button>
+      <button class="song-btn" onclick="playYouTube('p3l7fgvrEKM')">▶ Blue (Eiffel 65)</button>
+      <button class="song-btn" onclick="playYouTube('1k8craCGwV4')">▶ L'Amour Toujours (Gigi D'Ag)</button>
     </div>
   </div>
 
   <script>
     function playYouTube(videoId) {
       const player = document.getElementById('yt-player');
-      player.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?autoplay=1";
+      player.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
     }
   </script>
 

@@ -41,25 +41,16 @@
       margin-bottom: 15px;
     }
 
-    .screen {
+    .info-box {
       background: #000;
       border: 2px solid #00ffcc;
       border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-      box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.3);
+      padding: 20px;
+      color: #00ffcc;
+      font-size: 14px;
+      font-weight: bold;
       margin-bottom: 15px;
-    }
-
-    .screen iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
+      box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.3);
     }
 
     .section-title {
@@ -76,7 +67,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
-      max-height: 280px;
+      max-height: 320px;
       overflow-y: auto;
       padding-right: 5px;
     }
@@ -94,10 +85,10 @@
       color: #fff;
       border: 2px solid #ffd700;
       border-radius: 8px;
-      padding: 10px 8px;
+      padding: 12px 8px;
       font-size: 12px;
       font-weight: bold;
-      cursor: pointer;
+      text-decoration: none;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
@@ -128,62 +119,49 @@
   <div class="jukebox-body">
     <div class="brand-title">📻 JUKEBOX 80-90 📼</div>
 
-    <div class="screen">
-      <iframe id="yt-player" src="https://www.youtube.com/embed/5nEqVuBkEjg?enablejsapi=1" allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="info-box">
+      🎵 Scegli un brano qui sotto per ascoltarlo su YouTube!
     </div>
 
-    <div class="section-title">🎵 SELEZIONA UNA CANZONE</div>
+    <div class="section-title">SELEZIONA UNA CANZONE</div>
 
     <div class="song-grid">
-      <!-- QUEEN -->
-      <button class="song-btn" onclick="playYouTube('5nEqVuBkEjg')">▶ Bohemian Rhapsody (Queen)</button>
-      <button class="song-btn" onclick="playYouTube('HgzGwKwLmgM')">▶ Don't Stop Me Now (Queen)</button>
-      <button class="song-btn" onclick="playYouTube('-tJYN-eG1zk')">▶ We Will Rock You (Queen)</button>
-      <button class="song-btn" onclick="playYouTube('04854XqPbcU')">▶ We Are The Champions (Queen)</button>
-
       <!-- 883 -->
-      <button class="song-btn" onclick="playYouTube('N3P6fK2L8w8')">▶ Hanno Ucciso L'Uomo Ragno (883)</button>
-      <button class="song-btn" onclick="playYouTube('8C_D1x3aL8E')">▶ Nord Sud Ovest Est (883)</button>
-      <button class="song-btn" onclick="playYouTube('S3JmXnI7fEE')">▶ Come Mai (883)</button>
-      <button class="song-btn" onclick="playYouTube('8j8XpL2mR5o')">▶ Gli Anni (883)</button>
-      <button class="song-btn" onclick="playYouTube('38s1I2m214c')">▶ Sei Un Mito (883)</button>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+hanno+ucciso+l+uomo+ragno" target="_blank">▶ Hanno Ucciso L'Uomo Ragno</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+nord+sud+ovest+est" target="_blank">▶ Nord Sud Ovest Est</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+come+mai" target="_blank">▶ Come Mai</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+gli+anni" target="_blank">▶ Gli Anni</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=883+sei+un+mito" target="_blank">▶ Sei Un Mito</a>
 
       <!-- VASCO ROSSI -->
-      <button class="song-btn" onclick="playYouTube('u38Y_E3k34w')">▶ Albachiara (Vasco Rossi)</button>
-      <button class="song-btn" onclick="playYouTube('1_7_s_w7h0A')">▶ Vita Spericolata (Vasco Rossi)</button>
-      <button class="song-btn" onclick="playYouTube('2m5lS25Xy34')">▶ Rewind (Vasco Rossi)</button>
-      <button class="song-btn" onclick="playYouTube('p3k5qW_8W2E')">▶ Sally (Vasco Rossi)</button>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=vasco+rossi+albachiara" target="_blank">▶ Albachiara</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=vasco+rossi+vita+spericolata" target="_blank">▶ Vita Spericolata</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=vasco+rossi+rewind" target="_blank">▶ Rewind</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=vasco+rossi+sally" target="_blank">▶ Sally</a>
 
       <!-- LIGABUE -->
-      <button class="song-btn" onclick="playYouTube('ENMf0EHwclQ')">▶ Certe Notti (Ligabue)</button>
-      <button class="song-btn" onclick="playYouTube('P3a5eO2F-K4')">▶ Urlando Contro il Cielo (Ligabue)</button>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=ligabue+certe+notti" target="_blank">▶ Certe Notti</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=ligabue+urlando+contro+il+cielo" target="_blank">▶ Urlando Contro il Cielo</a>
+
+      <!-- QUEEN -->
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=queen+bohemian+rhapsody" target="_blank">▶ Bohemian Rhapsody</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=queen+don+t+stop+me+now" target="_blank">▶ Don't Stop Me Now</a>
 
       <!-- EROS RAMAZZOTTI -->
-      <button class="song-btn" onclick="playYouTube('b2AqO6E5SGE')">▶ Più Bella Cosa (E. Ramazzotti)</button>
-      <button class="song-btn" onclick="playYouTube('qQ3q_DqX7zA')">▶ Se Bastasse Una Canzone (Eros)</button>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=eros+ramazzotti+piu+bella+cosa" target="_blank">▶ Più Bella Cosa</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=eros+ramazzotti+se+bastasse+una+canzone" target="_blank">▶ Se Bastasse Una Canzone</a>
 
       <!-- MASSIMO RANIERI -->
-      <button class="song-btn" onclick="playYouTube('zcASGUV8L4g')">▶ Perdere L'Amore (M. Ranieri)</button>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=massimo+ranieri+perdere+l+amore" target="_blank">▶ Perdere L'Amore</a>
 
       <!-- GINO PAOLI -->
-      <button class="song-btn" onclick="playYouTube('R76Abv8-Mbc')">▶ Sapore Di Sale (Gino Paoli)</button>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=gino+paoli+sapore+di+sale" target="_blank">▶ Sapore Di Sale</a>
 
-      <!-- RENATO ZERO -->
-      <button class="song-btn" onclick="playYouTube('P225q5aG6b4')">▶ Il Cielo (R. Zero)</button>
-      <button class="song-btn" onclick="playYouTube('4xX9t_03vG4')">▶ I Migliori Anni (R. Zero)</button>
-
-      <!-- CLASSICI DANCE -->
-      <button class="song-btn" onclick="playYouTube('djV11Xbc914')">▶ Take On Me (A-ha)</button>
-      <button class="song-btn" onclick="playYouTube('68ugkg9Re48')">▶ Blue (Eiffel 65)</button>
+      <!-- DANCE -->
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=a-ha+take+on+me" target="_blank">▶ Take On Me</a>
+      <a class="song-btn" href="https://www.youtube.com/results?search_query=eiffel+65+blue" target="_blank">▶ Blue (Eiffel 65)</a>
     </div>
   </div>
-
-  <script>
-    function playYouTube(videoId) {
-      const player = document.getElementById('yt-player');
-      player.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=0";
-    }
-  </script>
 
 </body>
 </html>

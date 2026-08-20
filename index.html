@@ -71,7 +71,7 @@
       background: #111;
       border-radius: 8px;
       overflow: hidden;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       border: 1px solid #333;
     }
 
@@ -168,12 +168,11 @@
       <button class="song-btn" onclick="playTrack(this, 'Ligabue - Urlando Contro il Cielo', 'P3a5eO2F-K4')">▶ Ligabue - Urlando Contro il Cielo</button>
       <button class="song-btn" onclick="playTrack(this, 'Eros Ramazzotti - Più Bella Cosa', 'b2AqO6E5SGE')">▶ Eros Ramazzotti - Più Bella Cosa</button>
       <button class="song-btn" onclick="playTrack(this, 'Eros Ramazzotti - Se Bastasse Una Canzone', 'qQ3q_DqX7zA')">▶ Eros Ramazzotti - Se Bastasse Una Canzone</button>
-      <button class="song-btn" onclick="playTrack(this, 'Renato Zero - I Migliori Anni', 'zcASGUV8L4g')">▶ Renato Zero - I Migliori Anni</button>
+      <button class="song-btn" onclick="playTesto('Renato Zero - I Migliori Anni', 'zcASGUV8L4g')">▶ Renato Zero - I Migliori Anni</button>
       <button class="song-btn" onclick="playTrack(this, 'Eiffel 65 - Blue', '68ugkg9Re48')">▶ Eiffel 65 - Blue</button>
     </div>
   </div>
 
-  <!-- Script ufficiale YouTube Iframe API -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     let player;
@@ -186,7 +185,8 @@
         playerVars: {
           'playsinline': 1,
           'controls': 1,
-          'rel': 0
+          'rel': 0,
+          'autoplay': 1
         }
       });
     }
@@ -199,9 +199,6 @@
 
       if (player && typeof player.loadVideoById === 'function') {
         player.loadVideoById(videoId);
-      } else {
-        // Fallback di sicurezza se l'API ci mette un attimo a caricarsi
-        console.log("Player non ancora pronto, riprovo...");
       }
     }
   </script>

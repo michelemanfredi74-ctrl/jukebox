@@ -18,7 +18,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 15px;
+      padding: 10px;
     }
 
     .jukebox-body {
@@ -26,96 +26,65 @@
       max-width: 480px;
       background: linear-gradient(180deg, #b30000 0%, #4a0000 100%);
       border: 5px solid #ffd700;
-      border-radius: 30px;
-      padding: 20px 15px;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+      border-radius: 25px;
+      padding: 18px 14px;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
       text-align: center;
     }
 
     .brand-title {
-      font-size: clamp(20px, 5vw, 26px);
+      font-size: clamp(18px, 4.5vw, 24px);
       font-weight: 900;
       letter-spacing: 2px;
       color: #fff;
       text-shadow: 0 0 8px #ffd700, 0 0 15px #ff0000;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
-    /* Schermo del Jukebox senza video */
     .screen {
       background: #000;
       border: 2px solid #00ffcc;
       border-radius: 12px;
-      padding: 20px 15px;
+      padding: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 140px;
       box-shadow: inset 0 0 15px rgba(0, 255, 204, 0.2);
       margin-bottom: 15px;
-      position: relative;
     }
 
     .now-playing {
       color: #00ffcc;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: bold;
-      margin-bottom: 15px;
+      margin-bottom: 8px;
       text-transform: uppercase;
       word-break: break-word;
       text-shadow: 0 0 5px #00ffcc;
+      min-height: 20px;
     }
 
-    /* Animazione Lineetta / Onda Musicale */
-    .sound-wave {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 5px;
-      height: 40px;
-      margin-top: 5px;
+    .player-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 8px;
+      border: 1px solid #333;
     }
 
-    .bar {
-      width: 6px;
-      height: 8px;
-      background: #00ffcc;
-      border-radius: 3px;
-      box-shadow: 0 0 8px #00ffcc;
-    }
-
-    /* Quando la musica parte, le barrette si animano */
-    .playing .bar {
-      animation: wave 1.2s infinite ease-in-out alternate;
-    }
-
-    .playing .bar:nth-child(1) { animation-delay: 0.1s; }
-    .playing .bar:nth-child(2) { animation-delay: 0.3s; }
-    .playing .bar:nth-child(3) { animation-delay: 0.5s; }
-    .playing .bar:nth-child(4) { animation-delay: 0.2s; }
-    .playing .bar:nth-child(5) { animation-delay: 0.4s; }
-    .playing .bar:nth-child(6) { animation-delay: 0.6s; }
-
-    @keyframes wave {
-      0% { height: 8px; }
-      100% { height: 38px; background: #ffd700; box-shadow: 0 0 8px #ffd700; }
-    }
-
-    /* Iframe YouTube Nascosto (riproduce solo l'audio) */
-    .hidden-player {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
+    #yt-player {
+      width: 100%;
+      height: 100%;
     }
 
     .section-title {
       color: #ffd700;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: bold;
-      margin-top: 10px;
+      margin-top: 5px;
       margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -124,10 +93,10 @@
     .song-grid {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      max-height: 320px;
+      gap: 8px;
+      max-height: 260px;
       overflow-y: auto;
-      padding-right: 5px;
+      padding-right: 4px;
     }
 
     .song-grid::-webkit-scrollbar {
@@ -142,9 +111,9 @@
       background: #1a1a1a;
       color: #fff;
       border: 2px solid #ffd700;
-      border-radius: 12px;
-      padding: 12px;
-      font-size: 14px;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 13px;
       font-weight: bold;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -159,6 +128,12 @@
       color: #000;
     }
 
+    .song-btn.active {
+      background: #ffd700;
+      color: #000;
+      box-shadow: 0 0 10px #ffd700;
+    }
+
     .song-btn:active {
       transform: scale(0.98);
     }
@@ -169,60 +144,65 @@
   <div class="jukebox-body">
     <div class="brand-title">📻 JUKEBOX 80-90 📼</div>
 
-    <!-- Schermo Grafico con la Lineetta Musicale -->
     <div class="screen">
-      <div class="now-playing" id="track-title">Seleziona un brano</div>
+      <div class="now-playing" id="track-title">Seleziona un brano sotto</div>
       
-      <div class="sound-wave" id="wave-container">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+      <div class="player-container">
+        <div id="yt-player"></div>
       </div>
-
-      <!-- Player audio nascosto alla vista -->
-      <iframe class="hidden-player" id="yt-player" allow="autoplay"></iframe>
     </div>
 
-    <div class="section-title">🎵 TUTTE LE 16 CANZONI</div>
+    <div class="section-title">🎵 SELEZIONE BRANI</div>
 
-    <!-- Griglia con tutte le 16 canzoni -->
     <div class="song-grid">
-      <button class="song-btn" onclick="playAudio('Queen - We Are The Champions', 'fJ9rUzIMcZQ')">▶ Queen - We Are The Champions</button>
-      <button class="song-btn" onclick="playAudio('883 - Hanno Ucciso L\'Uomo Ragno', 'N3P6fK2L8w8')">▶ 883 - Hanno Ucciso L'Uomo Ragno</button>
-      <button class="song-btn" onclick="playAudio('883 - Nord Sud Ovest Est', '8C_D1x3aL8E')">▶ 883 - Nord Sud Ovest Est</button>
-      <button class="song-btn" onclick="playAudio('883 - Come Mai', 'S3JmXnI7fEE')">▶ 883 - Come Mai</button>
-      <button class="song-btn" onclick="playAudio('883 - Gli Anni', '8j8XpL2mR5o')">▶ 883 - Gli Anni</button>
-      <button class="song-btn" onclick="playAudio('883 - Sei Un Mito', '38s1I2m214c')">▶ 883 - Sei Un Mito</button>
-      <button class="song-btn" onclick="playAudio('Vasco Rossi - Albachiara', 'u38Y_E3k34w')">▶ Vasco Rossi - Albachiara</button>
-      <button class="song-btn" onclick="playAudio('Vasco Rossi - Vita Spericolata', '1_7_s_w7h0A')">▶ Vasco Rossi - Vita Spericolata</button>
-      <button class="song-btn" onclick="playAudio('Vasco Rossi - Rewind', '2m5lS25Xy34')">▶ Vasco Rossi - Rewind</button>
-      <button class="song-btn" onclick="playAudio('Vasco Rossi - Sally', 'p3k5qW_8W2E')">▶ Vasco Rossi - Sally</button>
-      <button class="song-btn" onclick="playAudio('Ligabue - Urlando Contro il Cielo', 'P3a5eO2F-K4')">▶ Ligabue - Urlando Contro il Cielo</button>
-      <button class="song-btn" onclick="playAudio('Eros Ramazzotti - Più Bella Cosa', 'b2AqO6E5SGE')">▶ Eros Ramazzotti - Più Bella Cosa</button>
-      <button class="song-btn" onclick="playAudio('Eros Ramazzotti - Se Bastasse Una Canzone', 'qQ3q_DqX7zA')">▶ Eros Ramazzotti - Se Bastasse Una Canzone</button>
-      <button class="song-btn" onclick="playAudio('Renato Zero - Il Cielo', 'fJ9rUzIMcZQ')">▶ Renato Zero - Il Cielo</button>
-      <button class="song-btn" onclick="playAudio('Renato Zero - I Migliori Anni', 'zcASGUV8L4g')">▶ Renato Zero - I Migliori Anni</button>
-      <button class="song-btn" onclick="playAudio('Eiffel 65 - Blue', '68ugkg9Re48')">▶ Eiffel 65 - Blue</button>
+      <button class="song-btn" onclick="playTrack(this, 'Queen - We Are The Champions', 'fJ9rUzIMcZQ')">▶ Queen - We Are The Champions</button>
+      <button class="song-btn" onclick="playTrack(this, '883 - Hanno Ucciso L\'Uomo Ragno', 'N3P6fK2L8w8')">▶ 883 - Hanno Ucciso L'Uomo Ragno</button>
+      <button class="song-btn" onclick="playTrack(this, '883 - Nord Sud Ovest Est', '8C_D1x3aL8E')">▶ 883 - Nord Sud Ovest Est</button>
+      <button class="song-btn" onclick="playTrack(this, '883 - Come Mai', 'S3JmXnI7fEE')">▶ 883 - Come Mai</button>
+      <button class="song-btn" onclick="playTrack(this, '883 - Gli Anni', '8j8XpL2mR5o')">▶ 883 - Gli Anni</button>
+      <button class="song-btn" onclick="playTrack(this, '883 - Sei Un Mito', '38s1I2m214c')">▶ 883 - Sei Un Mito</button>
+      <button class="song-btn" onclick="playTrack(this, 'Vasco Rossi - Albachiara', 'u38Y_E3k34w')">▶ Vasco Rossi - Albachiara</button>
+      <button class="song-btn" onclick="playTrack(this, 'Vasco Rossi - Vita Spericolata', '1_7_s_w7h0A')">▶ Vasco Rossi - Vita Spericolata</button>
+      <button class="song-btn" onclick="playTrack(this, 'Vasco Rossi - Rewind', '2m5lS25Xy34')">▶ Vasco Rossi - Rewind</button>
+      <button class="song-btn" onclick="playTrack(this, 'Vasco Rossi - Sally', 'p3k5qW_8W2E')">▶ Vasco Rossi - Sally</button>
+      <button class="song-btn" onclick="playTrack(this, 'Ligabue - Urlando Contro il Cielo', 'P3a5eO2F-K4')">▶ Ligabue - Urlando Contro il Cielo</button>
+      <button class="song-btn" onclick="playTrack(this, 'Eros Ramazzotti - Più Bella Cosa', 'b2AqO6E5SGE')">▶ Eros Ramazzotti - Più Bella Cosa</button>
+      <button class="song-btn" onclick="playTrack(this, 'Eros Ramazzotti - Se Bastasse Una Canzone', 'qQ3q_DqX7zA')">▶ Eros Ramazzotti - Se Bastasse Una Canzone</button>
+      <button class="song-btn" onclick="playTrack(this, 'Renato Zero - I Migliori Anni', 'zcASGUV8L4g')">▶ Renato Zero - I Migliori Anni</button>
+      <button class="song-btn" onclick="playTrack(this, 'Eiffel 65 - Blue', '68ugkg9Re48')">▶ Eiffel 65 - Blue</button>
     </div>
   </div>
 
+  <!-- Script ufficiale YouTube Iframe API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    function playAudio(title, videoId) {
-      const player = document.getElementById('yt-player');
-      const trackTitle = document.getElementById('track-title');
-      const waveContainer = document.getElementById('wave-container');
-      
-      // Aggiorna il titolo dello schermo
-      trackTitle.innerText = "In riproduzione: " + title;
-      
-      // Attiva l'animazione della lineetta/onda sonora
-      waveContainer.classList.add('playing');
-      
-      // Avvia l'audio tramite il flusso
-      player.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?autoplay=1&enablejsapi=1";
+    let player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('yt-player', {
+        height: '100%',
+        width: '100%',
+        videoId: '',
+        playerVars: {
+          'playsinline': 1,
+          'controls': 1,
+          'rel': 0
+        }
+      });
+    }
+
+    function playTrack(btnElement, title, videoId) {
+      document.querySelectorAll('.song-btn').forEach(btn => btn.classList.remove('active'));
+      if (btnElement) btnElement.classList.add('active');
+
+      document.getElementById('track-title').innerText = title;
+
+      if (player && typeof player.loadVideoById === 'function') {
+        player.loadVideoById(videoId);
+      } else {
+        // Fallback di sicurezza se l'API ci mette un attimo a caricarsi
+        console.log("Player non ancora pronto, riprovo...");
+      }
     }
   </script>
 
